@@ -1,12 +1,38 @@
 [project]
 name = "industrial-ml-predictive-maintenance"
 version = "0.1.0"
-description = "Add your description here"
+description = "RUL prediction for predictive maintenance"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "mlflow>=3.14.0",
     "numpy>=2.5.0",
-    "pandas>=2.3.3",
+    "pandas>=2.3.3,<3",      # teto: 3.0 muda comportamento (CoW por default)
     "scikit-learn>=1.9.0",
+    "lightgbm>=4.6.0",       # baseline obrigatório antes do DL
 ]
+
+[project.optional-dependencies]
+cpu   = ["torch>=2.12"]
+cu126 = ["torch>=2.12"]
+
+[tool.uv]
+conflicts = [
+    [{ extra = "cpu" }, { extra = "cu126" }],
+]
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu",   extra = "cpu" },
+    { index = "pytorch-cu126", extra = "cu126" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu126"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
