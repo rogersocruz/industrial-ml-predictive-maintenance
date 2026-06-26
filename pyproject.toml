@@ -7,24 +7,33 @@ requires-python = ">=3.12"
 dependencies = [
     "mlflow>=3.14.0",
     "numpy>=2.5.0",
-    "pandas>=2.3.3,<3",      # teto: 3.0 muda comportamento (CoW por default)
+    "pandas>=2.3.3,<3",   
     "scikit-learn>=1.9.0",
-    "lightgbm>=4.6.0",       # baseline obrigatório antes do DL
+    "lightgbm>=4.6.0",      
 ]
 
 [project.optional-dependencies]
 cpu   = ["torch>=2.12"]
 cu126 = ["torch>=2.12"]
+cu130 = ["torch>=2.12"]
+cu132 = ["torch>=2.12"]
 
 [tool.uv]
 conflicts = [
-    [{ extra = "cpu" }, { extra = "cu126" }],
+    [
+        { extra = "cpu" },
+        { extra = "cu126" },
+        { extra = "cu130" },
+        { extra = "cu132" },
+    ],
 ]
 
 [tool.uv.sources]
 torch = [
     { index = "pytorch-cpu",   extra = "cpu" },
     { index = "pytorch-cu126", extra = "cu126" },
+    { index = "pytorch-cu130", extra = "cu130" },
+    { index = "pytorch-cu132", extra = "cu132" },
 ]
 
 [[tool.uv.index]]
@@ -35,4 +44,14 @@ explicit = true
 [[tool.uv.index]]
 name = "pytorch-cu126"
 url = "https://download.pytorch.org/whl/cu126"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu130"
+url = "https://download.pytorch.org/whl/cu130"
+explicit = true
+
+[[tool.uv.index]]
+name = "pytorch-cu132"
+url = "https://download.pytorch.org/whl/cu132"
 explicit = true

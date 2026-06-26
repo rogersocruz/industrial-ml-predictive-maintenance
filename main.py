@@ -1,10 +1,7 @@
 """
-Smoke test das dependências do projeto.
-Roda com:  uv run python test_deps.py
+Smoke test of project dependencies.
+Run with:  uv run python main.py
 
-Confirma import, versão e funcionamento mínimo de cada lib,
-e diagnostica o status da GPU (importa depois do --extra cu126).
-Exit code 0 se tudo passou, 1 se algo falhou (serve pra CI).
 """
 import sys
 
@@ -23,7 +20,7 @@ print(f"Python {sys.version.split()[0]}\n")
 results = []
 
 
-# --- versão + smoke test funcional de cada lib ---
+# --- version + functional smoke test of each lib ---
 def t_numpy():
     import numpy as np
     a = np.arange(10)
@@ -80,7 +77,7 @@ print()
 results.append(check("torch", t_torch))
 
 
-# --- diagnóstico GPU (o que confirma que --extra cu126 pegou de verdade) ---
+# --- GPU diagnostic
 try:
     import torch
     cuda = torch.cuda.is_available()
@@ -101,7 +98,7 @@ except Exception as e:
     print(f"  diagnóstico GPU falhou: {type(e).__name__}: {e}")
 
 
-# --- resumo ---
+# --- resume ---
 ok, total = sum(results), len(results)
 print(f"\n{'=' * 42}")
 print(f"{ok}/{total} dependências OK")

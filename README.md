@@ -24,7 +24,7 @@ insted use pip tool -> use uv tools
 
 
 to excute with cuda
-uv sync --extra cu126 #(cu126,cu130,cu132)  
-
-uv sync --extra cpu    
-
+uv sync --extra cpu       # CI, without GPU
+uv sync --extra cu126     # CUDA 12.6 
+uv sync --extra cu130     # CUDA 13.0
+uv sync --extra cu132     # CUDA 13.2 
