@@ -9,6 +9,8 @@
 * numpy (letter)
 * pandas (latter)
 
+In such complex systems, the degradation of components is one of the main reasons for unplanned downtime, which leads to substantial costs from both system repair and production loss
+
 keywords: Data-Driven Prognostics, Prognostics \& Health Management (PHM), Predidctive Mainetance (PdM), IIoT, DRL, DL, Temporal Series
 
 i runned that model in my local machine, i recomendo create a venv with python libraries
@@ -19,12 +21,12 @@ dashboard avaliable in: http://127.0.0.1:5000
 
 insted use pip tool -> use uv tools
 
-
-
-
+RUL - Remaining Useful Life
+PHM - Prognostics and Health Management
+CBM - Condition-Based Maintenance
 
 to excute with cuda
-uv sync --extra cpu       # CI, without GPU
-uv sync --extra cu126     # CUDA 12.6 
-uv sync --extra cu130     # CUDA 13.0
-uv sync --extra cu132     # CUDA 13.2 
+* uv sync --extra cpu       # CI, without GPU
+* uv sync --extra cu126     # CUDA 12.6 
+* uv sync --extra cu130     # CUDA 13.0
+* uv sync --extra cu132     # CUDA 13.2 
